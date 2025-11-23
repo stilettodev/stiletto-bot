@@ -1,7 +1,6 @@
 stiletto-bot of which for now is a base bot
 Multi-Device │ All Interactive Features │ Anti-Spam │ Auto Welcome │ Free AI │ Owner Commands
 
-<img src="https://i.imgur.com/stiletto-banner.jpg" alt="Stiletto Bot Banner" />
 
 ### Owner
 - **Stiletto** (+254708464426)  
