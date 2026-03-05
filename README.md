@@ -1,22 +1,46 @@
 # Stiletto Bot
 
-A stylish multi-device WhatsApp bot built on Baileys with better menu layout, clickable buttons, moderation tools, and useful daily commands.
+A modular multi-device WhatsApp bot built with Baileys.
 
-## Highlights
-- Better WhatsApp-first layout (image menu card + quick reply buttons)
-- Command panel using list categories for clean navigation
-- Improved command coverage (utility, group admin, owner)
-- Anti-link moderation with warning → auto-kick behavior
-- AI assistant support via `!ai`
+## ✅ New Architecture
+This project now uses **libs + plugins** so it is easier to scale:
 
-## Core Features
-- **Main menu card**: `!menu`, `!help`, `!start`
-- **Command panel**: `!categories`
-- **AI**: `!ai <question>`
-- **Interactive content**: `!poll`, `!catalog`, `!shop`, `!location`, `!feedback`
-- **Utility**: `!ping`, `!stats`, `!uptime`, `!time`, `!quote`, `!owner`
-- **Group admin**: `!rules`, `!tagall`, `!hidetag <message>`
-- **Owner-only**: `!broadcast <message>`
+```txt
+/libs
+  ai.js
+  config.js
+  helpers.js
+  moderation.js
+  pluginLoader.js
+/plugins
+  ai.js
+  features.js
+  group.js
+  menu.js
+  owner.js
+  utility.js
+main.js
+```
+
+- **libs/** = reusable backend utilities (API handlers, helpers, moderation, plugin loader)
+- **plugins/** = command features (menu, AI, group/admin, utility, owner, commerce)
+
+## Features
+- Better WhatsApp layout with image menu + quick buttons
+- Command categories panel
+- Anti-link moderation (warn then kick)
+- Group tools (`tagall`, `hidetag`, `rules`)
+- Utility commands (`ping`, `stats`, `time`, `quote`, `owner`)
+- AI command (`!ai <question>`)
+- Shop, catalog, poll and feedback flows
+
+## Commands
+- `!menu`, `!help`, `!start`, `!categories`
+- `!ping`, `!stats`, `!uptime`, `!time`, `!quote`, `!owner`
+- `!rules`, `!tagall`, `!hidetag <message>`
+- `!poll`, `!catalog`, `!shop`, `!location`, `!feedback`
+- `!ai <question>`
+- `!broadcast <message>` (owner only)
 
 ## Setup
 ```bash
@@ -24,19 +48,13 @@ npm install
 npm start
 ```
 
-Scan QR in terminal and keep the process running.
-
-## Optional Environment Variables
+## Environment variables
 - `OWNER_NUMBER=2547...`
 - `OWNER_NAME=Stiletto`
 - `BOT_NAME=Stiletto Bot`
 - `BOT_PREFIX=!`
 - `WEBSITE_URL=https://your-site.com`
 - `LOG_LEVEL=silent`
-
-## Notes
-- Session is stored in `stiletto-session/`.
-- If command text does not trigger a command, open menu with `!menu`.
 
 ## License
 MIT
