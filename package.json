@@ -1,17 +1,21 @@
 {
-  "name": "itsukichan",
-  "version": "1.0.0",
+  "name": "stiletto-bot",
+  "version": "1.1.0",
   "type": "module",
-  "description": "",
-  "main": "index.js",
+  "description": "A multi-device WhatsApp bot with interactive features, moderation and AI commands.",
+  "main": "main.js",
   "scripts": {
-    "start": "node ultimate-bot.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
-    
+    "start": "node main.js",
+    "check": "node --check main.js",
+    "test": "npm run check"
   },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
+  "keywords": [
+    "whatsapp",
+    "bot",
+    "baileys"
+  ],
+  "author": "Stiletto",
+  "license": "MIT",
   "dependencies": {
     "@itsukichan/baileys": "^7.3.2",
     "node-cache": "^5.1.2",
@@ -19,4 +23,3 @@
     "qrcode-terminal": "^0.12.0"
   }
 }
-
