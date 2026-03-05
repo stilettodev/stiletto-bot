@@ -1,29 +1,42 @@
-stiletto-bot of which for now is a base bot
-Multi-Device │ All Interactive Features │ Anti-Spam │ Auto Welcome │ Free AI │ Owner Commands
+# Stiletto Bot
 
+A stylish multi-device WhatsApp bot built on Baileys with better menu layout, clickable buttons, moderation tools, and useful daily commands.
 
-### Owner
-- **Stiletto** (+254708464426)  
-- Website: https://stiletto.page.gd  
-- X: [@stiletto_shell](https://x.com/stiletto_shell)  
-- GitHub: [stilettodev](https://github.com/stilettodev)
+## Highlights
+- Better WhatsApp-first layout (image menu card + quick reply buttons)
+- Command panel using list categories for clean navigation
+- Improved command coverage (utility, group admin, owner)
+- Anti-link moderation with warning → auto-kick behavior
+- AI assistant support via `!ai`
 
-### Features
-- Native Polls, Buttons, Lists, Catalogs, Location
-- Auto Welcome & Goodbye messages
-- Anti-link + Anti-spam (auto-kick)
-- Free AI replies (`!ai hello`)
-- Owner broadcast (`!broadcast`)
-- Full session saving (no re-scan)
-- 100% Multi-Device (works with phone connected)
+## Core Features
+- **Main menu card**: `!menu`, `!help`, `!start`
+- **Command panel**: `!categories`
+- **AI**: `!ai <question>`
+- **Interactive content**: `!poll`, `!catalog`, `!shop`, `!location`, `!feedback`
+- **Utility**: `!ping`, `!stats`, `!uptime`, `!time`, `!quote`, `!owner`
+- **Group admin**: `!rules`, `!tagall`, `!hidetag <message>`
+- **Owner-only**: `!broadcast <message>`
 
-### How to Run
+## Setup
 ```bash
-git clone https://github.com/stilettodev/stiletto-bot.git
-cd stiletto-bot
 npm install
-node main.js
-Scan the QR → Done! Bot runs forever.
-License
-MIT — Feel free to fork & star
-Made with by Stiletto — Kenya
+npm start
+```
+
+Scan QR in terminal and keep the process running.
+
+## Optional Environment Variables
+- `OWNER_NUMBER=2547...`
+- `OWNER_NAME=Stiletto`
+- `BOT_NAME=Stiletto Bot`
+- `BOT_PREFIX=!`
+- `WEBSITE_URL=https://your-site.com`
+- `LOG_LEVEL=silent`
+
+## Notes
+- Session is stored in `stiletto-session/`.
+- If command text does not trigger a command, open menu with `!menu`.
+
+## License
+MIT
