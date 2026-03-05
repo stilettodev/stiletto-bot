@@ -28,7 +28,8 @@ function buildCategories(config) {
         rows: [
           { title: 'Menu', rowId: `${config.prefix}menu`, description: 'Show home layout' },
           { title: 'AI Assistant', rowId: `${config.prefix}ai what can you do`, description: 'Ask AI anything' },
-          { title: 'Ping', rowId: `${config.prefix}ping`, description: 'Bot response speed' }
+          { title: 'Ping', rowId: `${config.prefix}ping`, description: 'Bot response speed' },
+          { title: 'Extras 55+', rowId: `${config.prefix}extras`, description: 'Advanced utility command pack' }
         ]
       },
       {

@@ -31,6 +31,7 @@ main.js
 - Anti-link moderation (warn then kick)
 - Group tools (`tagall`, `hidetag`, `rules`)
 - Utility commands (`ping`, `stats`, `time`, `quote`, `owner`)
+- 55+ extra precision commands (`!extras`) for text, math, encoding, todo, reminders, random tools
 - AI command (`!ai <question>`)
 - Shop, catalog, poll and feedback flows
 
@@ -41,6 +42,7 @@ main.js
 - `!poll`, `!catalog`, `!shop`, `!location`, `!feedback`
 - `!ai <question>`
 - `!broadcast <message>` (owner only)
+- `!extras` (shows 55+ additional commands)
 
 ## Setup
 ```bash
