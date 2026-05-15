@@ -17,7 +17,8 @@
   "author": "Stiletto",
   "license": "MIT",
   "dependencies": {
-    "@itsukichan/baileys": "^7.3.2",
+    "@whiskeysockets/baileys": "^7.0.0-rc11",
+    "baileys_helpers": "^1.0.15",
     "node-cache": "^5.1.2",
     "pino": "^10.1.0",
     "qrcode-terminal": "^0.12.0"

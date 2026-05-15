@@ -1,3 +1,5 @@
+import { sendButtons, sendInteractiveMessage } from 'baileys_helpers';
+
 export default {
   name: 'features',
   commands: ['poll', 'catalog', 'location', 'shop', 'feedback', 'feedback_5', 'feedback_4', 'feedback_3'],
@@ -45,14 +47,13 @@ export default {
     }
 
     if (lower.startsWith('shop')) {
-      await sock.sendMessage(from, {
-        image: { url: 'https://i.imgur.com/stiletto-banner.jpg' },
-        caption: `🛍️ *${config.botName.toUpperCase()} PRO*\n\n✅ Lifetime license\n✅ Full source code\n✅ 24/7 support\n\nPrice: KES 4,999`,
+      await sendButtons(sock, from, {
+        text: `🛍️ *${config.botName.toUpperCase()} PRO*\n\n✅ Lifetime license\n✅ Full source code\n✅ 24/7 support\n\nPrice: KES 4,999`,
         footer: 'Limited slots available',
-        templateButtons: [
-          { quickReplyButton: { displayText: '📩 I Want To Buy', id: `${config.prefix}owner` } },
-          { quickReplyButton: { displayText: '📋 View Commands', id: `${config.prefix}categories` } },
-          { urlButton: { displayText: '💬 Contact Owner', url: `https://wa.me/${config.ownerNumber}` } }
+        buttons: [
+          { id: `${config.prefix}owner`, text: '📩 I Want To Buy' },
+          { id: `${config.prefix}categories`, text: '📋 View Commands' },
+          { name: 'cta_url', buttonParamsJson: JSON.stringify({ display_text: '💬 Contact Owner', url: `https://wa.me/${config.ownerNumber}` }) }
         ]
       });
       return;
@@ -64,15 +65,15 @@ export default {
         return;
       }
 
-      await sock.sendMessage(from, {
+      await sendButtons(sock, from, {
         text: `How would you rate *${config.botName}*?`,
+        footer: 'Your feedback matters',
         buttons: [
-          { buttonId: 'feedback_5', buttonText: { displayText: '⭐⭐⭐⭐⭐ Excellent' } },
-          { buttonId: 'feedback_4', buttonText: { displayText: '⭐⭐⭐⭐ Great' } },
-          { buttonId: 'feedback_3', buttonText: { displayText: '⭐⭐⭐ Good' } }
-        ],
-        headerType: 1
-      }, { quoted: m });
+          { id: 'feedback_5', text: '⭐⭐⭐⭐⭐ Excellent' },
+          { id: 'feedback_4', text: '⭐⭐⭐⭐ Great' },
+          { id: 'feedback_3', text: '⭐⭐⭐ Good' }
+        ]
+      });
     }
   }
 };
