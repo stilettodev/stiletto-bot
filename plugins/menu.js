@@ -1,52 +1,71 @@
-function buildMainMenu(config, uptime) {
+import { sendButtons, sendInteractiveMessage } from 'baileys_helpers';
+
+export function buildMainMenu(config, uptime) {
   return {
-    image: { url: 'https://i.imgur.com/stiletto-banner.jpg' },
-    caption:
+    text:
       `╭───❍ *${config.botName.toUpperCase()}* ❍───\n` +
       `│ 🤖 Status: Online\n` +
       `│ 👑 Owner: ${config.ownerName}\n` +
       `│ ⚙️ Prefix: ${config.prefix}\n` +
       `│ ⏱️ Uptime: ${uptime}\n` +
       `╰──────────────────\n\n` +
-      `Tap a button below or use *${config.prefix}categories* for full panel.`,
+      `Tap a button below to navigate:`,
     footer: `Powered by ${config.botName}`,
-    templateButtons: [
-      { quickReplyButton: { displayText: '📋 Open Command Panel', id: `${config.prefix}categories` } },
-      { urlButton: { displayText: '🌐 Website', url: config.websiteUrl } },
-      { urlButton: { displayText: '💬 Chat Owner', url: `https://wa.me/${config.ownerNumber}` } }
+    buttons: [
+      { id: `${config.prefix}categories`, text: '📋 Command Panel' },
+      { name: 'cta_url', buttonParamsJson: JSON.stringify({ display_text: '🌐 Website', url: config.websiteUrl }) },
+      { name: 'cta_url', buttonParamsJson: JSON.stringify({ display_text: '💬 Chat Owner', url: `https://wa.me/${config.ownerNumber}` }) }
     ]
   };
 }
 
-function buildCategories(config) {
+export function buildCategories(config) {
   return {
     text: `✨ *${config.botName} Command Panel*\nChoose a command category below:`,
-    buttonText: 'Open Categories',
-    sections: [
+    footer: 'Navigate with ease',
+    interactiveButtons: [
       {
-        title: '🚀 Core',
-        rows: [
-          { title: 'Menu', rowId: `${config.prefix}menu`, description: 'Show home layout' },
-          { title: 'AI Assistant', rowId: `${config.prefix}ai what can you do`, description: 'Ask AI anything' },
-          { title: 'Ping', rowId: `${config.prefix}ping`, description: 'Bot response speed' },
-          { title: 'Extras 55+', rowId: `${config.prefix}extras`, description: 'Advanced utility command pack' }
-        ]
+        name: 'single_select',
+        buttonParamsJson: JSON.stringify({
+          title: '🚀 Core Commands',
+          sections: [{
+            title: 'Main Features',
+            rows: [
+              { id: `${config.prefix}menu`, title: '🏠 Menu', description: 'Show home layout' },
+              { id: `${config.prefix}ai what can you do`, title: '🤖 AI Assistant', description: 'Ask AI anything' },
+              { id: `${config.prefix}ping`, title: '⚡ Ping', description: 'Bot response speed' },
+              { id: `${config.prefix}extras`, title: '🎁 Extras 55+', description: 'Advanced utility pack' }
+            ]
+          }]
+        })
       },
       {
-        title: '👥 Group Tools',
-        rows: [
-          { title: 'Rules', rowId: `${config.prefix}rules`, description: 'Show group rules' },
-          { title: 'Tag All', rowId: `${config.prefix}tagall`, description: 'Mention all members' },
-          { title: 'Hidden Tag', rowId: `${config.prefix}hidetag hello team`, description: 'Silent mention all' }
-        ]
+        name: 'single_select',
+        buttonParamsJson: JSON.stringify({
+          title: '👥 Group Tools',
+          sections: [{
+            title: 'Group Management',
+            rows: [
+              { id: `${config.prefix}rules`, title: '📜 Rules', description: 'Show group rules' },
+              { id: `${config.prefix}tagall`, title: '🔊 Tag All', description: 'Mention all members' },
+              { id: `${config.prefix}hidetag hello team`, title: '🤫 Hidden Tag', description: 'Silent mention' }
+            ]
+          }]
+        })
       },
       {
-        title: '🧩 Features',
-        rows: [
-          { title: 'Poll', rowId: `${config.prefix}poll`, description: 'Interactive poll' },
-          { title: 'Shop', rowId: `${config.prefix}shop`, description: 'Offer card with buttons' },
-          { title: 'Feedback', rowId: `${config.prefix}feedback`, description: 'Rate the bot' }
-        ]
+        name: 'single_select',
+        buttonParamsJson: JSON.stringify({
+          title: '🧩 Features',
+          sections: [{
+            title: 'Interactive Features',
+            rows: [
+              { id: `${config.prefix}poll`, title: '📊 Poll', description: 'Create interactive poll' },
+              { id: `${config.prefix}shop`, title: '🛒 Shop', description: 'Offer card with buttons' },
+              { id: `${config.prefix}feedback`, title: '⭐ Feedback', description: 'Rate the bot' }
+            ]
+          }]
+        })
       }
     ]
   };
@@ -59,10 +78,10 @@ export default {
     const { sock, from, text, config, getUptimeString, m } = ctx;
 
     if (text.toLowerCase().includes('categories')) {
-      await sock.sendMessage(from, buildCategories(config), { quoted: m });
+      await sendInteractiveMessage(sock, from, buildCategories(config), { quoted: m });
       return;
     }
 
-    await sock.sendMessage(from, buildMainMenu(config, getUptimeString()), { quoted: m });
+    await sendButtons(sock, from, buildMainMenu(config, getUptimeString()), { quoted: m });
   }
 };
